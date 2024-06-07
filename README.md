@@ -17,7 +17,7 @@ Second  : Create the database todolist in the MySQL server
 <br></br>
 Third   : Open the ToDoList folder using Visual Studio Code and open the terminal
 <br></br>
-Fourth  : Open the terminal and run the command PHP artisan migrate:fresh
+Fourth  : Run the command PHP artisan migrate:fresh 
 <br></br>
-Fifth   : Run the command npm run dev and finally type the command php artisan serve and click the given link to run the ToDoList Website
-<br></br>
+Fifth   : Run the command npm run dev and finally type the command php artisan serve in other terminal and click the given link to run the ToDoList Website
+
