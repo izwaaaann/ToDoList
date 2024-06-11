@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    
+
+    <!-- Roboto Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,36 +16,37 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-image: url('/images/wallpaper4.jpg'); /* Update path to your image */
-            background-size: 2000px;
+            background-image: url('/images/wallpaper4.jpg'); 
+            background-size: 2500px;
             background-position: center;
             background-repeat: no-repeat;
+            font-family: 'Roboto', sans-serif;
+            zoom: 90%;
         }
 
         .container {
             margin-top: 50px;
             background-color: white;
             padding: 20px;
+            padding-top: 1px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           
         }
 
         .btn-custom {
             margin-bottom: 10px;
         }
 
-        .table {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
+        
+       
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1 class="mt-5">Todo List</h1>
-        <a class="btn btn-primary btn-custom " href="{{ route('dashboard') }}">Dashboard</a>
-        <a class="btn btn-primary btn-custom" href="{{ route('tasks.create') }}">Add New Task</a>
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+@include('layouts.navigation')
+
+    <div class="container pt-10 bg-transparent">
+        
+        
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success mt-3" role="alert">
@@ -49,12 +54,15 @@
             </div>
         @endif
 
-        <table class="table mt-3">
+        <table class="table bg-white mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>Bil</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -64,6 +72,9 @@
                         <td>{{ $task->id }}</td>
                         <td>{{ $task->title }}</td>
                         <td>{{ $task->description }}</td>
+                        <td>{{ $task->status }}</td>
+                        <td>{{ $task->start_date }}</td>
+                        <td>{{ $task->end_date }}</td>
                         <td>
                             <a class="btn btn-secondary btn-sm" href="{{ route('tasks.edit', $task->id) }}">Edit</a>
                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline-block">
@@ -75,14 +86,17 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center">No tasks found.</td>
+                        <td colspan="7" class="text-center">No tasks found.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
-    </div>
-   
+        <div class="flex justify-center">
+    <a class="btn btn-primary btn-custom" href="{{ route('tasks.create') }}">Add New Task</a>
+</div>
 
+
+    </div>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

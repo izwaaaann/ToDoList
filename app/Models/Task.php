@@ -10,5 +10,11 @@ class Task extends Model
     use HasFactory;
 
     // The attributes that are mass assignable.
-    protected $fillable = ['title', 'description'];
+    protected $fillable = [
+        'title',
+        'description',
+        'status',
+        'start_date',
+        'end_date',
+    ];
 }

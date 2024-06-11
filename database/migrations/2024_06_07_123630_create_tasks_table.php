@@ -12,6 +12,9 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->string('status')->default('pending');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

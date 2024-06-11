@@ -6,16 +6,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+   <!-- Roboto Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
-          body {
-            background-image: url('/images/wallpaper4.jpg'); /* Update path to your image */
+        body {
+            background-image: url('/images/wallpaper4.jpg'); 
             background-size: 2000px;
             background-position: center;
             background-repeat: no-repeat;
+            font-family: 'Roboto', sans-serif;
         }
         .container {
             margin-top: 50px;
@@ -35,7 +39,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Edit Task</h1>
+        <h1 class="mt-0">Edit Task</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -57,6 +61,22 @@
             <div class="form-group">
                 <label for="description" class="form-label">Description:</label>
                 <textarea class="form-control" id="description" name="description">{{ $task->description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="status" class="form-label">Status:</label>
+                <select class="form-control" id="status" name="status">
+                    <option value="pending" {{ $task->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="ongoing" {{ $task->status == 'ongoing' ? 'selected' : '' }}>Ongoing</option>
+                    <option value="finished" {{ $task->status == 'finished' ? 'selected' : '' }}>Finished</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="start_date" class="form-label">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $task->start_date }}">
+            </div>
+            <div class="form-group">
+                <label for="end_date" class="form-label">End Date:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $task->end_date }}">
             </div>
             <button type="submit" class="btn btn-primary">Update Task</button>
         </form>
